@@ -24,7 +24,7 @@ public class App {
             else if (mathSymbol == '/') {
                 if (num2 == 0) {
                     System.out.println("오류: 0으로는 나눌 수 없습니다. 다시 시도해주세요.");
-                }else
+                } else
                     result = num1 / num2;
                 }
             System.out.println("결과: " + result);
