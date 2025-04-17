@@ -6,7 +6,6 @@ public class App {
         Calculator calculator = new Calculator();
 
         Scanner sc = new Scanner(System.in);
-        int result = 0;
 
         String continuePrompt;
 
