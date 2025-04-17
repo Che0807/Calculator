@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
+        Calculator calculator = new Calculator();
+
         Scanner sc = new Scanner(System.in);
         int result = 0;
 
