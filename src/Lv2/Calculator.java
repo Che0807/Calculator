@@ -56,4 +56,19 @@ public class Calculator {
     public List<Integer> getResultList() {
         return resultList;
     }
+
+    public void setResultList(List<Integer> resultList) {
+        // 1. null 값 방지
+        if (resultList == null) {
+            System.out.println("오류: null 리스트는 설정할 수 없습니다.");
+            return;
+        }
+
+        // 2. 음수 값 방지
+        for (Integer value : resultList)
+            if (value < 0) {
+                System.out.println("오류: 음수 값은 허용되지 않습니다.");
+                return;
+            }
+    }
 }
