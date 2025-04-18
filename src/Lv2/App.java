@@ -19,14 +19,11 @@ public class App {
             System.out.println("사칙연산 기호를 입력하세요 (+, -, *, /): ");
             char mathSymbol = sc.next().charAt(0);
 
-            // 계산 실행
-            calculator.calculate(num1, num2, mathSymbol);
+            // 계산 결과가 성공적으로 처리되었는지 확인
+            boolean isCalculated = calculator.calculate(num1, num2, mathSymbol);
 
-            // 계산 결과 가져오기
-            List<Integer> resultList = calculator.getResultList();
-
-            if (!resultList.isEmpty()) {
-                // 마지막 계산 결과를 출력
+            if (isCalculated) {
+                List<Integer> resultList = calculator.getResultList();
                 int lastResult = resultList.get(resultList.size() - 1);
                 System.out.println("계산 결과: " + lastResult);
             }
