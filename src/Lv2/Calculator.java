@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Calculator {
 
-    private List<Integer> resultList = new ArrayList<>();
+    private final List<Integer> resultList = new ArrayList<>();
 
-    public int calculate(int num1, int num2, char mathSymbol) {
+    // 계산 기능
+    public void calculate(int num1, int num2, char mathSymbol) {
         int result = 0;
         boolean isCalculated = true;
 
@@ -30,27 +31,23 @@ public class Calculator {
         }
 
         if (isCalculated) {
-            if (result < 0) {
-                System.out.println("오류: 계산된 결과는 음수일 수 없습니다.");
-                return 0;  // 음수 결과는 반환하지 않음
-            }
-
             System.out.println("계산 결과: " + result);
-            resultList.add(result);  // 음수가 아니라면 리스트에 추가
+            resultList.add(result);
         }
 
-        return result;
+    }
+
+    // 가장 먼저 저장된 결과 삭제하는 메서드
+    public void removeFirst() {
+        if (!resultList.isEmpty()) {
+            int removed = resultList.remove(0);
+            System.out.println("삭제된 결과: " + removed);
+        } else {
+            System.out.println("삭제할 결과가 없습니다.");
+        }
     }
 
     public List<Integer> getResultList() {
         return resultList;
-    }
-
-    public void setResultList(List<Integer> resultList) {
-        if (resultList == null) {
-            System.out.println("오류: null 리스트는 설정할 수 없습니다.");
-            return;
-        }
-        this.resultList = resultList;
     }
 }
