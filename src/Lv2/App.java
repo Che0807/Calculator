@@ -10,12 +10,13 @@ public class App {
         String userInput;
 
         do {
-            System.out.println("첫 번째 숫자를 입력하세요: ");
-            int num1 = sc.nextInt();
+            // 첫 번째 숫자 입력 (양의 정수만 입력받기)
+            int num1 = getPositiveInteger(sc, "첫 번째 숫자를 입력하세요: ");
 
-            System.out.println("두 번째 숫자를 입력하세요: ");
-            int num2 = sc.nextInt();
+            // 두 번째 숫자 입력 (양의 정수만 입력받기)
+            int num2 = getPositiveInteger(sc, "두 번째 숫자를 입력하세요: ");
 
+            // 연산 기호 입력
             System.out.println("사칙연산 기호를 입력하세요 (+, -, *, /): ");
             char mathSymbol = sc.next().charAt(0);
 
@@ -28,6 +29,7 @@ public class App {
                 System.out.println("계산 결과: " + lastResult);
             }
 
+            // 사용자 입력 받기 (계속 진행 or 삭제, 종료)
             System.out.println("계속하려면 아무 키나 입력하세요. 'delete' 입력 시 결과 삭제, 'exit' 입력 시 종료");
             userInput = sc.next();
 
@@ -38,5 +40,19 @@ public class App {
         } while (!userInput.equals("exit"));
 
         System.out.println("프로그램을 종료합니다.");
+    }
+
+    // 양의 정수만 입력받기 위한 메서드
+    private static int getPositiveInteger(Scanner sc, String prompt) {
+        int num;
+        while (true) {
+            System.out.print(prompt);
+            num = sc.nextInt();
+            // 양의 정수 또는 0만 허용
+            if (num >= 0) {
+                break;
+            } else System.out.println("양의 정수(0 포함)만 입력하세요.");
+        }
+        return num;
     }
 }
