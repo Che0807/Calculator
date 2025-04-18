@@ -9,32 +9,31 @@ public class Calculator {
 
     // 계산 기능
     public void calculate(int num1, int num2, char mathSymbol) {
-        int result = 0;
-        boolean isCalculated = true;
+        int result;
 
-        if (mathSymbol == '+') {
-            result = num1 + num2;
-        } else if (mathSymbol == '-') {
-            result = num1 - num2;
-        } else if (mathSymbol == '*') {
-            result = num1 * num2;
-        } else if (mathSymbol == '/') {
-            if (num2 == 0) {
-                System.out.println("오류: 0으로는 나눌 수 없습니다.");
-                isCalculated = false;
-            } else {
+        switch (mathSymbol) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 == 0) {
+                    System.out.println("오류: 0으로 나눌 수 없습니다.");
+                    return;  // 계산을 중단하고 반환
+                }
                 result = num1 / num2;
-            }
-        } else {
-            System.out.println("잘못된 연산 기호입니다.");
-            isCalculated = false;
+                break;
+            default:
+                System.out.println("잘못된 연산 기호입니다.");
+                return;  // 잘못된 연산 기호일 경우 계산을 중단하고 반환
         }
 
-        if (isCalculated) {
-            System.out.println("계산 결과: " + result);
-            resultList.add(result);
-        }
-
+        resultList.add(result);  // 계산 결과를 리스트에 저장
     }
 
     // 가장 먼저 저장된 결과 삭제하는 메서드
@@ -47,6 +46,7 @@ public class Calculator {
         }
     }
 
+    // 결과 리스트 반환
     public List<Integer> getResultList() {
         return resultList;
     }
