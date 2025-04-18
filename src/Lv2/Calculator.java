@@ -11,6 +11,8 @@ public class Calculator {
     public void calculate(int num1, int num2, char mathSymbol) {
         int result;
 
+        boolean isCalculated = true;
+
         switch (mathSymbol) {
             case '+':
                 result = num1 + num2;
@@ -24,12 +26,14 @@ public class Calculator {
             case '/':
                 if (num2 == 0) {
                     System.out.println("오류: 0으로 나눌 수 없습니다.");
+                    isCalculated = false;
                     return;  // 계산을 중단하고 반환
                 }
                 result = num1 / num2;
                 break;
             default:
                 System.out.println("잘못된 연산 기호입니다.");
+                isCalculated = false;
                 return;  // 잘못된 연산 기호일 경우 계산을 중단하고 반환
         }
 
