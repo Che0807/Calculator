@@ -30,8 +30,13 @@ public class Calculator {
         }
 
         if (isCalculated) {
+            if (result < 0) {
+                System.out.println("오류: 계산된 결과는 음수일 수 없습니다.");
+                return 0;  // 음수 결과는 반환하지 않음
+            }
+
             System.out.println("계산 결과: " + result);
-            resultList.add(result);
+            resultList.add(result);  // 음수가 아니라면 리스트에 추가
         }
 
         return result;
@@ -42,24 +47,10 @@ public class Calculator {
     }
 
     public void setResultList(List<Integer> resultList) {
-        // 1. null 값 방지
         if (resultList == null) {
             System.out.println("오류: null 리스트는 설정할 수 없습니다.");
             return;
         }
-
-        // 2. 음수 값 방지
-        for (Integer value : resultList) {
-            if (value < 0) {
-                System.out.println("오류: 음수 값은 허용되지 않습니다.");
-                return;
-            }
-        }
-
-        // 3. 조건을 통과하면 저장
         this.resultList = resultList;
     }
 }
-
-
-
