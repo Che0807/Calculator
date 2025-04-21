@@ -2,6 +2,7 @@ package Lv2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Calculator {
 
@@ -57,7 +58,7 @@ public class Calculator {
         return resultList;
     }
 
-    public void setResultList(List<Integer> resultList) {
+    private void setResultList(List<Integer> resultList) {
         // 1. null 값 방지
         if (resultList == null) {
             System.out.println("오류: null 리스트는 설정할 수 없습니다.");
@@ -71,7 +72,7 @@ public class Calculator {
                 return;
             }
     }
-
+       //리스트 출력
     public void printAllResults() {
         if (resultList.isEmpty()) {
             System.out.println("저장된 결과가 없습니다.");
@@ -82,6 +83,19 @@ public class Calculator {
             }
         }
     }
+    public static char getValidMathSymbol(Scanner sc) {
+        String input;
+        while (true) {
+            System.out.println("사칙연산 기호를 입력하세요 (+, -, *, /): ");
+            input = sc.next();
+            if (input.length() == 1 && "+-*/".contains(input)) {
+                return input.charAt(0);
+            } else {
+                System.out.println("잘못된 연산 기호입니다. 다시 입력해주세요.");
+            }
+        }
+    }
 }
+
 
 
