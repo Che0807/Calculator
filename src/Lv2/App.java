@@ -43,4 +43,25 @@ public class App {
         calculator.printAllResults();
 
     }
+    private static int getPositiveInteger(Scanner sc, String prompt) {
+        int num;
+
+        while (true) {
+            System.out.print(prompt);
+
+            // 정수인지 먼저 검사
+            if (sc.hasNextInt()) {
+                num = sc.nextInt();
+                if (num >= 0) {
+                    continue;
+                } else {
+                    System.out.println("양의 정수(0 포함)만 입력하세요.");
+                }
+            } else {
+                System.out.println("숫자만 입력 가능합니다!");
+                sc.next(); // 잘못된 입력(문자열 등) 버리기
+            }
+        }
+    }
+
 }
