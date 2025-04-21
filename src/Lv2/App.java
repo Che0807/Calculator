@@ -40,6 +40,8 @@ public class App {
         } while (!userInput.equals("exit"));
 
         System.out.println("프로그램을 종료합니다.");
+        calculator.printAllResults();
+
     }
 
     // 양의 정수만 입력받기 위한 메서드

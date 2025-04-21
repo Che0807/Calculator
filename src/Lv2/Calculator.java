@@ -71,4 +71,17 @@ public class Calculator {
                 return;
             }
     }
+
+    public void printAllResults() {
+        if (resultList.isEmpty()) {
+            System.out.println("저장된 결과가 없습니다.");
+        } else {
+            System.out.println("\n[저장된 결과 목록]");
+            for (int i = 0; i < resultList.size(); i++) {
+                System.out.printf("%d번째 결과: %d%n", i + 1, resultList.get(i));
+            }
+        }
+    }
 }
+
+
