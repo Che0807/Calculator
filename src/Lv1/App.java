@@ -3,19 +3,26 @@ package Lv1;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in); // 인스턴스 필드
+
+    public static void main(String[] args) {
+        App app = new App(); // App 인스턴스 생성
+        app.run();           // run 메서드 실행
+    }
+
+    // 메인 로직을 실행하는 인스턴스 메서드
+    public void run() {
         int result = 0;
         String continuePrompt;
 
         // 계산 반복 루프
         do {
             // 1. 첫 번째 숫자 입력
-            int num1 = getPositiveInteger(sc, "첫 번째 숫자를 입력하세요: ");
+            int num1 = getPositiveInteger("첫 번째 숫자를 입력하세요: ");
 
             // 2. 두 번째 숫자 입력
-            int num2 = getPositiveInteger(sc, "두 번째 숫자를 입력하세요: ");
+            int num2 = getPositiveInteger("두 번째 숫자를 입력하세요: ");
 
             // 3. 연산 기호 입력
             System.out.println("사칙연산 기호를 입력하세요 (+, -, *, /): ");
@@ -48,8 +55,8 @@ public class App {
         System.out.println("프로그램을 종료합니다.");
     }
 
-    // 양의 정수(0 포함)만 입력받는 메서드
-    private static int getPositiveInteger(Scanner sc, String prompt) {
+    // 양의 정수(0 포함)만 입력받는 인스턴스 메서드
+    private int getPositiveInteger(String prompt) {
         int num;
 
         while (true) {
@@ -71,8 +78,8 @@ public class App {
         }
     }
 
-    // 유효한 사칙연산 기호만 입력받는 메서드 (현재는 사용 안 함)
-    public static char getValidMathSymbol(Scanner sc) {
+    // 유효한 사칙연산 기호만 입력받는 인스턴스 메서드
+    public char getValidMathSymbol() {
         String input;
 
         while (true) {
