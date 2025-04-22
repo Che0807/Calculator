@@ -7,24 +7,28 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
         int result = 0;
-
         String continuePrompt;
 
+        // 계산 반복 루프
         do {
-            // 첫 번째 숫자 입력 (양의 정수만 받기)
+            // 1. 첫 번째 숫자 입력
             int num1 = getPositiveInteger(sc, "첫 번째 숫자를 입력하세요: ");
 
-            // 두 번째 숫자 입력 (양의 정수만 받기)
+            // 2. 두 번째 숫자 입력
             int num2 = getPositiveInteger(sc, "두 번째 숫자를 입력하세요: ");
 
+            // 3. 연산 기호 입력
             System.out.println("사칙연산 기호를 입력하세요 (+, -, *, /): ");
             char mathSymbol = sc.next().charAt(0);
 
-            // 연산 수행
-            if (mathSymbol == '+') result = num1 + num2;
-            else if (mathSymbol == '-') result = num1 - num2;
-            else if (mathSymbol == '*') result = num1 * num2;
-            else if (mathSymbol == '/') {
+            // 4. 연산 수행
+            if (mathSymbol == '+') {
+                result = num1 + num2;
+            } else if (mathSymbol == '-') {
+                result = num1 - num2;
+            } else if (mathSymbol == '*') {
+                result = num1 * num2;
+            } else if (mathSymbol == '/') {
                 if (num2 == 0) {
                     System.out.println("오류: 0으로는 나눌 수 없습니다. 다시 시도해주세요.");
                 } else {
@@ -32,29 +36,54 @@ public class App {
                 }
             }
 
-            // 결과 출력
+            // 5. 결과 출력
             System.out.println("결과: " + result);
 
-            // 계속 진행 여부 확인
+            // 6. 계속할지 물어보기
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             continuePrompt = sc.next();
+
         } while (!continuePrompt.equals("exit"));
 
         System.out.println("프로그램을 종료합니다.");
     }
 
-    // 양의 정수만 입력받는 메서드
+    // 양의 정수(0 포함)만 입력받는 메서드
     private static int getPositiveInteger(Scanner sc, String prompt) {
         int num;
+
         while (true) {
             System.out.print(prompt);
-            num = sc.nextInt();
-            if (num >= 0) {
-                break;  // 양의 정수이므로 루프 탈출
+
+            if (sc.hasNextInt()) {
+                num = sc.nextInt();
+
+                if (num >= 0) {
+                    return num;
+                } else {
+                    System.out.println("양의 정수(0 포함)만 입력하세요.");
+                }
+
             } else {
-                System.out.println("양의 정수(0 포함)만 입력하세요.");
+                System.out.println("숫자만 입력 가능합니다!");
+                sc.next(); // 잘못된 입력 제거
             }
         }
-        return num;
+    }
+
+    // 유효한 사칙연산 기호만 입력받는 메서드 (현재는 사용 안 함)
+    public static char getValidMathSymbol(Scanner sc) {
+        String input;
+
+        while (true) {
+            System.out.println("사칙연산 기호를 입력하세요 (+, -, *, /): ");
+            input = sc.next();
+
+            if (input.length() == 1 && "+-*/".contains(input)) {
+                return input.charAt(0);
+            } else {
+                System.out.println("잘못된 연산 기호입니다. 다시 입력해주세요.");
+            }
+        }
     }
 }
