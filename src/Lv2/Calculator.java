@@ -76,9 +76,9 @@ public class Calculator {
         while (true) {
             System.out.println("사칙연산 기호를 입력하세요 (+, -, *, /): ");
             input = sc.next();
-            if (input.length() == 1 && "+-*/".contains(input)) {
+            if (input.equals("+") || input.equals("-") || input.equals("*") || input.equals("/")) {
                 return input.charAt(0);
-            } else {
+        } else {
                 System.out.println("잘못된 연산 기호입니다. 다시 입력해주세요.");
             }
         }
