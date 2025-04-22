@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
+
+    private static final String COMMAND_DELETE = "delete";
+    private static final String COMMAND_EXIT = "exit";
+
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Scanner sc = new Scanner(System.in);
@@ -19,49 +23,48 @@ public class App {
             // 연산 기호 입력
             char mathSymbol = Calculator.getValidMathSymbol(sc);
 
-
-            // 계산 결과가 성공적으로 처리되었는지 확인
+            // 계산 수행
             boolean isCalculated = calculator.calculate(num1, num2, mathSymbol);
 
+            // 결과 출력
             if (isCalculated) {
                 List<Integer> resultList = calculator.getResultList();
                 int lastResult = resultList.get(resultList.size() - 1);
                 System.out.println("계산 결과: " + lastResult);
             }
 
-            // 사용자 입력 받기 (계속 진행 or 삭제, 종료)
-            System.out.println("계속하려면 아무 키나 입력하세요. 'delete' 입력 시 결과 삭제, 'exit' 입력 시 종료");
+            // 다음 동작 확인
+            System.out.println("계속하려면 아무 키나 입력하세요. '" + COMMAND_DELETE + "' 입력 시 결과 삭제, '" + COMMAND_EXIT + "' 입력 시 종료");
             userInput = sc.next();
 
-            if (userInput.equals("delete")) {
+            if (userInput.equals(COMMAND_DELETE)) {
                 calculator.removeFirst();
             }
 
-        } while (!userInput.equals("exit"));
+        } while (!userInput.equals(COMMAND_EXIT));
 
         System.out.println("프로그램을 종료합니다.");
         calculator.printAllResults();
-
     }
+
+    // 양의 정수 입력 메서드
     private static int getPositiveInteger(Scanner sc, String prompt) {
         int num;
 
         while (true) {
             System.out.print(prompt);
 
-            // 정수인지 먼저 검사
             if (sc.hasNextInt()) {
                 num = sc.nextInt();
                 if (num >= 0) {
-                    continue;
+                    return num;
                 } else {
                     System.out.println("양의 정수(0 포함)만 입력하세요.");
                 }
             } else {
                 System.out.println("숫자만 입력 가능합니다!");
-                sc.next(); // 잘못된 입력(문자열 등) 버리기
+                sc.next(); // 잘못된 입력 제거
             }
         }
     }
-
 }
