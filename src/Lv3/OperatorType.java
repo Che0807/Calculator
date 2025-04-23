@@ -23,7 +23,15 @@ public enum OperatorType {
     // 연산자의 기호 반환
     public String getSymbol() {
         return symbol;
+    }
 
-
+    // 연산자 기호를 기반으로 해당하는 OperatorType을 반환하는 메서드
+    public static OperatorType fromSymbol(String input) {
+        for (OperatorType op : values()) {
+            if (op.getSymbol().equals(input)) {
+                return op;
+            }
+        }
+        throw new IllegalArgumentException("유효하지 않은 연산자입니다.");
     }
 }
