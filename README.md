@@ -28,7 +28,7 @@
 ## 기술 스택
 
 - Java
-- VS Code
+- IntelliJ IDEA
 - Enum, Lambda, Functional Interface 활용
 
 ## 설치 방법
